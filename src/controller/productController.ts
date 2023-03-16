@@ -6,7 +6,6 @@ class productController{
 
     public async createProduct(req:Request,res: Response){
         const product= productService.createProductList(req.body)
-
         return res.status(201).send()
     }
 
@@ -14,19 +13,15 @@ class productController{
     //2 - Criar uma nova rota do tipo GET chamada: /products, que ao ser acessada irá ler o arquivo products.json
     //e retornar os valores presentes nesse arquivo
     public async getProduct(req:Request,res:Response){
-        const produto= JSON.parse(await productService.getProducts())
-        console.log(produto)
-        const listarProdutos=produto.map((item) =>{
-            return{
-                Nome: item.nome,
-                Quantidade: item.qtde,
-                Preco: item.preco,
-                Data_De_Compra: item.data_compra,
-                data_De_Entrega: item.data_De_Entrega
-            }
-        })
-    return listarProdutos
+        const product = await productService.getProducts()
+        return res.json(product)
     }
+
+    public async getProduct_Stock(req:Request,res:Response){
+        const productList=await productService.getStock()    
+        return res.json(productList)
+    }
+
 }
 
 export default new productController();

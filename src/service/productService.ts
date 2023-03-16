@@ -15,9 +15,26 @@ class ProductService{
         
         try {
             const readProduct = await readFile('products.json','utf-8')
-            return readProduct;
+            return JSON.parse(readProduct)
         } catch (error) {
-            throw new Error('Falha,EEEERROOOOu')
+            throw new Error('Erro na leitura do arquivo')
+        }
+    }
+
+    async getStock(){
+        try {
+            const product = await this.getProducts()
+            const productList=product.map((item)=>{
+                return{
+                    nome: item.nome,
+                    qtde: item.qtde,
+                    preco: item.preco,
+                    valor_stock: item.preco*item.qtde
+                }
+            })
+            return productList; 
+        } catch (error) {
+            throw new Error('Erro na leitura do arquivo')
         }
     }
 }
