@@ -37,6 +37,19 @@ class ProductService{
             throw new Error('Erro na leitura do arquivo')
         }
     }
+
+    async getStockValue(){
+        try {
+            const product = await this.getProducts()
+            const product_stock=product.reduce((totalValue,value)=>{
+                return (totalValue+value.preco*value.qtde)
+            },0
+            )
+        return JSON.parse(product_stock.toFixed(2))
+        } catch (error) {
+            
+        }
+    }
 }
 
 export default new ProductService();

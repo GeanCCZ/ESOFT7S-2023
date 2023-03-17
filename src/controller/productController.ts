@@ -22,6 +22,11 @@ class productController{
         return res.json(productList)
     }
 
+    public async getTotalStock(req:Request,res:Response){
+        const stockValue=await productService.getStockValue() 
+
+        return res.json(stockValue)
+    }
 }
 
 export default new productController();

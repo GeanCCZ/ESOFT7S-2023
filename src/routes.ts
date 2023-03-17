@@ -15,5 +15,6 @@ routes.post('/users', userController.createUser)
 routes.post('/product', productController.createProduct)
 routes.get('/product',productController.getProduct)
 routes.get('/products-stock',productController.getProduct_Stock)
+routes.get('/total-stock',productController.getTotalStock)
 // 19 - exportar a constante routes
 export default routes
