@@ -40,12 +40,12 @@ class ProductService{
 
     async getStockValue(){
         try {
-            const product = await this.getProducts()
+            const product = await this.getStock()
             const product_stock=product.reduce((totalValue,value)=>{
-                return (totalValue+value.preco*value.qtde)
+                return (totalValue+value.valor_stock)
             },0
-            )
-        return JSON.parse(product_stock.toFixed(2))
+            ).toFixed(2)
+        return JSON.parse(product_stock)
         } catch (error) {
             
         }
